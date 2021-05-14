@@ -21,7 +21,14 @@ app.set('view engine' , '.hbs')
 
 //middleware
 app.use(morgan('dev'))
+
+
+//rutas app
+app.use(require('./routes/index'))
+app.use('/support',require('./routes/admin'))
+app.use('/req',require('./routes/authentication'))
+
 app.use(express.static(path.join(__dirname,'public')))
 app.listen(app.get('port'), () => {
-    console.log('server on port', app.get('port'))
+    console.log('server on port http//localhost/',app.get('port'))
 })
