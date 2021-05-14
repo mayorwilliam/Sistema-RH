@@ -1,12 +1,14 @@
 const express = require('express')
 const morgan = require('morgan')
-const pool = require('./settings/db')
 const hbs = require('express-handlebars')
+const session = require('express-session')
+const passport = require('passport')
+
+const  {database} = require('./settings/keys')
+const MysqlStore = require('express-mysql-session')(session)
 const path = require('path')
-
-
-
 const app = express()
+require('./controllers/passport')
 app.set('port', process.env.PORT ||4000)
 app.set('views',path.join(__dirname, 'views'))
 app.engine('.hbs', hbs({
