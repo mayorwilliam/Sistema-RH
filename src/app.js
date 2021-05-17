@@ -4,6 +4,10 @@ const hbs = require('express-handlebars')
 const session = require('express-session')
 const passport = require('passport')
 
+const flash = require('connect-flash')
+const bodyParser = require('body-parser')
+
+
 const  {database} = require('./settings/keys')
 const MysqlStore = require('express-mysql-session')(session)
 const path = require('path')
@@ -23,6 +27,24 @@ app.set('view engine' , '.hbs')
 
 //middleware
 app.use(morgan('dev'))
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json(({extended:true})))
+
+//sesseion
+app.use(session({
+    secret: 'cursocrudmysqlynodejs',
+    resave: false,
+    saveUninitialized: false,
+    store: new MysqlStore(database)
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
+
+app.use((request,response,next) => {
+    app.locals.user = request.user
+    next()
+})
 
 
 //rutas app

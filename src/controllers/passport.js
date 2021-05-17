@@ -11,19 +11,23 @@ passport.use('local.signup' , new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, async (request,username,password,done) => {
-    const {nombre,apellido,documento} = request.body
-    let doc = parseInt(documento)
+    //por alguna razón tiene que estar primero Documento con D mayuscula en el request.body y luego 
+    // en la variable let con minuscula para que funcione y coincida con el campo de la db
+    //actualización de comentario, el request body son los "name" de los input y Documento es el name
+    // y documento en minuscula es como se debe de pasar en el insert de la db
+    const {nombre,apellido,Documento} = request.body
+    let documento = parseInt(Documento)
     let newUser = {
         username,
         password,
         nombre,
         apellido,
-        doc
+        documento
     }
     console.log(password)
     newUser.password = helpers.encryptPass(password)
     console.log(password)
-    const  result = await pool.query('INSERT INTO users SET?' , newUser)
+    const  result = await pool.query('INSERT INTO users SET ?' , newUser)
     newUser.id = result.insertId
     return done(null, newUser)
 }))
