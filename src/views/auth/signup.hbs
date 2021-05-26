@@ -6,8 +6,8 @@
 <body>
     <!-- Background image for card set in CSS! -->
     
-    
-    <div class="container p-4">
+    {{#each user}}
+        <div class="container p-4">
         <div class="row">
             <div class="col-md-4 mx-auto">
                 <div class="card text-center">
@@ -23,6 +23,8 @@
         </div>
     </div>
 
+
+    {{else}}
 
     <div class="container">
         <div class="row">
@@ -66,5 +68,7 @@
             </div>
         </div>
     </div>
+    {{/each}}
+    
 </body>
 

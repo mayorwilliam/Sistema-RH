@@ -22,10 +22,14 @@
 
 		<!-- end form -->
 		<!-- nav right -->
+		<div class="div-logo">
+                <img src="/img/logo-cie2.png" class="logo-chico">
+            </div>
+		
 		<ul class="navbar-nav  ">
-
+			
 			<div class="col-4 nav-item">
-				<a href="">
+				<a href="/req/logout">
 					<div>
 						<center>
 							<i class="fas fa-sign-out-alt"></i>
@@ -55,31 +59,31 @@
 				</a>
 			</li>
 			<li class="sidebar-nav-item">
-				<a  class="sidebar-nav-link active">
+				<a data-toggle="modal" data-target="#AddArticuloModal" class="sidebar-nav-link active">
 					<div>
 						<i class="fab fa-accusoft"></i>
 					</div>
-					<span>Add Articulo</span>
+					<span>Añadir Empleado</span>
 				</a>
 			</li>
 			<li class="sidebar-nav-item">
-				<a  class="sidebar-nav-link">
+				<a data-toggle="modal" data-target="#ListArticuloModal" class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-tasks"></i>
 					</div>
-					<span>List Articulos</span>
+					<span>Listar Empleados</span>
 				</a>
 			</li>
 			<li class="sidebar-nav-item">
-				<a  class="sidebar-nav-link">
+				<a data-toggle="modal" data-target="#ArticulosModal" class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-spinner"></i>
 					</div>
-					<span>Ultimos Articulos</span>
+					<span>Últimos Empleados</span>
 				</a>
 			</li>
 			<li class="sidebar-nav-item">
-				<a  class="sidebar-nav-link">
+				<a data-toggle="modal" data-target="#MensageModal" class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-check-circle"></i>
 					</div>
@@ -105,8 +109,10 @@
 					<p>
 						<i class="fas fa-tasks"></i>
 					</p>
-					20
-					<p>Articulos publicados</p>
+					{{#each numArticulos}}
+					<h3>{{total}}</h3>
+					{{/each}}
+					<p>Empleados Totales</p>
 				</div>
 			</div>
 			<div class="col-3 col-m-6 col-sm-6">
@@ -114,7 +120,9 @@
 					<p>
 						<i class="fas fa-check-circle"></i>
 					</p>
-						10
+					{{#each numMensajes}}
+					<h3>{{total}}</h3>
+					{{/each}}
 					<p>Total mensajes</p>
 				</div>
 			</div>
@@ -140,6 +148,23 @@
 								</tr>
 							</thead>Articulos
 							<tbody>
+								{{#each articulos}}
+									<tr>
+										<td>{{id}}</td>
+										<td>{{title}}</td>
+										<td>{{descript}}</td>
+										<td>
+											<samp class="dot">
+												<i class="bg-success"></i>
+												{{ users_id}}
+
+											</samp>
+										</td>
+										<td>{{hora}}</td>
+									</tr>
+
+
+								{{/each}}
 							</tbody>
 						</table>
 					</div>
@@ -147,15 +172,17 @@
 			</div>
 
 		</div>
-		
+
 
 		<br><br><br><br><br><br><br><br><br><br>
 		<div class="row">
 			<div class="col-12">
-				<samp>Crud - node + MySQL</samp>
+				<samp>Sistema Rh Cie</samp>
 			</div>
 		</div>
 	</div>
+
+	{{>modals}}
 	<!-- end main content -->
 	<!-- import script -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>

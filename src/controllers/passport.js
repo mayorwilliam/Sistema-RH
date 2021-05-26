@@ -14,7 +14,7 @@ passport.use('local.signup' , new LocalStrategy({
     //por alguna razón tiene que estar primero Documento con D mayuscula en el request.body y luego 
     // en la variable let con minuscula para que funcione y coincida con el campo de la db
     //actualización de comentario, el request body son los "name" de los input y Documento es el name
-    // y documento en minuscula es como se debe de pasar en el insert de la db
+    // y documento en minuscula es como se debe de pasar en el insert de la db  
     const {nombre,apellido,Documento} = request.body
     let documento = parseInt(Documento)
     let newUser = {
@@ -24,9 +24,9 @@ passport.use('local.signup' , new LocalStrategy({
         apellido,
         documento
     }
-    console.log(password)
-    newUser.password = helpers.encryptPass(password)
-    console.log(password)
+    console.log(newUser.password)
+    newUser.password = await helpers.encryptPass(password)
+    console.log(newUser.password)
     const  result = await pool.query('INSERT INTO users SET ?' , newUser)
     newUser.id = result.insertId
     return done(null, newUser)
@@ -35,19 +35,20 @@ passport.use('local.signup' , new LocalStrategy({
 passport.use('local.signin', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
-    passReqToCallback: true
-}, async (request, username,password,done) => {
-    const respuesta = await pool.query('SELECT * FROM users WHERE username =?', [username])
-    if(respuesta.length > 0){
-        const user = respuesta[0]
-        const validPass = helpers.matchPass(password, user.password)
-        if(validPass){
-            done(null,user)
-        }else{
-            done(null,false)
+    passReqToCallback: true,
+}, async (request , username, password, done) =>{
+    console.log(username + password)
+    const resp = await pool.query('SELECT * FROM users WHERE username =?',[username])
+    if (resp.length > 0) {
+        const user = resp[0];
+        const validPass = await helpers.matchPass(password, user.password);
+        if (validPass) {
+            done(null, user)
+        } else {
+            done(null, false )
         }
-    }else{
-        return done(null,false)
+    } else {
+        return done(null, false)
     }
 }))
 

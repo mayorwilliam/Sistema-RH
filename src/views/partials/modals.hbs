@@ -24,7 +24,7 @@
             </h2>
           </center>
 
-          <form action="" method="POST">
+          <form action="/support/addarticulo" method="POST">
             <div class="form-group">
               <input type="text" name="title" class="form-control" placeholder="title" autofocus>
             </div>
@@ -61,7 +61,8 @@
         <div class="modal-body">
           ...
           <div class="row">
-            
+            {{#each articulos}}
+
             <div class="col-4">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -74,7 +75,8 @@
                 </div>
               </div>
             </div>
-            
+
+            {{else}}
             <div class="col-4">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -86,7 +88,9 @@
                 </div>
               </div>
             </div>
-           
+
+            {{/each}}
+
           </div>
         </div>
         <div class="modal-footer">
@@ -108,7 +112,9 @@
         </div>
         <div class="modal-body">
           <div class="row">
-           
+
+
+            {{#each ultArticulos}}
 
             <div class="col-4">
               <div class="card" style="width: 18rem;">
@@ -122,8 +128,8 @@
                 </div>
               </div>
             </div>
-           
 
+            {{else}}
             <div class="col-4">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -135,7 +141,9 @@
                 </div>
               </div>
             </div>
-           
+
+            {{/each}}
+
           </div>
         </div>
         <div class="modal-footer">
@@ -157,7 +165,9 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            
+
+
+            {{#each listMensajes}}
 
             <div class="col-4">
               <div class="card" style="width: 18rem;">
@@ -171,8 +181,8 @@
                 </div>
               </div>
             </div>
-           
 
+            {{else}}
             <div class="col">
               <center>
                 <div class="card" style="width: 18rem;">
@@ -186,8 +196,10 @@
                 </div>
               </center>
             </div>
-           
-           
+
+            {{/each}}
+
+
           </div>
         </div>
 

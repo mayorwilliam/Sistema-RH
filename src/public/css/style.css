@@ -159,7 +159,10 @@ body {
 	background: var(--danger-color);
 	border-radius: 5px;
 }
-
+.div-logo{
+    margin-left: auto;
+    margin-right: auto;
+}
 .dropdown {
 	position: relative;
 }
@@ -281,9 +284,9 @@ body {
 }
 
 .wrapper {
-	padding: 10px;
+	
 	margin-left: 82px;
-	padding-top: 75px;
+	
 	background: var(--second-bg-color);
 	transition: margin-left .5s;
 }
@@ -292,7 +295,7 @@ body {
 	width: 82px;
 	height: 100vh;
 	position: fixed;
-	margin-top: 65px;
+	
 	background: var(--main-bg-color);
 	box-shadow: rgba(0,0,0,0.12) 0px 1px 4px 1px;
 	overflow: hidden;
@@ -475,6 +478,7 @@ body {
 .counter {
 	padding: 16px;
 	text-align: center;
+	margin-left: 10px;
 	color: #fff;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

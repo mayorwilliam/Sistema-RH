@@ -1,8 +1,11 @@
 const pool = require('../settings/db')
 
-let index = (request,response) => {
-    response.render('index')
+let index = async (request,response) => {
+    const articulos = await pool.query('SELECT * FROM articulos')
+    response.render('index', {articulos})
 }
+
+
 
 
 module.exports = {

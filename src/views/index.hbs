@@ -2,15 +2,17 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 
+
 {{>nav_uno}}
 
-<br>
-<div class="container-fluid">
+{{!-- <br> --}}
+{{!-- <div class="container-fluid">
     <div class="row">
         <div class="col-8">
             <hr>
             
-            <div class="col-4">
+            {{#each articulos}}
+                <div class="col-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">{{title}}</h5>
@@ -20,6 +22,8 @@
                     </div>
                 </div>
             </div>
+
+            {{else}}
 
             <div class="col-12">
                 <br>
@@ -37,18 +41,20 @@
             </div>
 
 
-        </div>
-        <div class="col-4">
+            {{/each}}
+
+        </div> --}}
+        <div class="col-4" id="retardo">
             <div class="modal-body">
                 <form action="/addMensaje" method="POST">
-                    <div class="form-group">
+                    {{!-- <div class="form-group">
                         <input type="text" name="nombre" class="form-control" placeholder="Nombre de usuario">
+                    </div> --}}
+                    <div class="form-group">
+                        <input type="email" name="correo" class="form-control" placeholder="Usuario">
                     </div>
                     <div class="form-group">
-                        <input type="email" name="correo" class="form-control" placeholder="Correo electronico">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="description" rows="4" class="form-control" placeholder="Description"></textarea>
+                        <textarea name="description" rows="4" class="form-control" placeholder="Motivo de retardo"></textarea>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success btn-block">
@@ -58,4 +64,4 @@
                 </form>
             </div>
         </div>
-    </div>
+    {{!-- </div> --}}
