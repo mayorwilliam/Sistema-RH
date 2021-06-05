@@ -1,11 +1,13 @@
 const express = require('express')
+const multer = require('multer')
+
 const admin = require('../controllers/controller_admin')
 const app = express.Router()
-
+const upload = multer({dest: './archivos'})
 const {isLoggedIn} = require('../controllers/auth')
 
 app.get('/dashboard',isLoggedIn, admin.admin)
-app.post('/addarticulo',isLoggedIn, admin.addarticulo)
+app.post('/addarticulo',isLoggedIn,upload.single('archivo'),  admin.addarticulo)
 
 //edit articulo
 app.get('/editArticulo/:id',isLoggedIn, admin.vereditArticulo)

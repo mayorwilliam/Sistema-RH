@@ -1,6 +1,7 @@
 const { response } = require('express')
 const pool = require('../settings/db')
 
+
 let admin = async (request,response) => {
 
     const articulos = await pool.query('SELECT * FROM articulos')
