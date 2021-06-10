@@ -1,11 +1,11 @@
 const { response } = require('express')
 const pool = require('../settings/db')
-const path  = require('path')
-const fs = require('fs-extra')
+// const path  = require('path')
+// const fs = require('fs-extra')
 
-const multer = require('multer')
-const upload = multer({dest: './archivos'})
-let dobleInput = upload.fields([{name: 'archivo'}, {name: 'archivos'}])
+// const multer = require('multer')
+// const upload = multer({dest: './archivos'})
+// let dobleInput = upload.fields([{name: 'archivo'}, {name: 'archivos'}])
 
 let admin = async (request,response) => {
 
@@ -42,7 +42,7 @@ let addarticulo = async (request,response) => {
     
     let users_id = request.user.id
     console.log(users_id)
-    console.log(request)
+    // console.log(request.file)
     const newArticulo = {
         title,
         descript,

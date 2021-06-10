@@ -3,6 +3,7 @@ const express = require('express')
 
 const admin = require('../controllers/controller_admin')
 const app = express.Router()
+
 const {isLoggedIn} = require('../controllers/auth')
 
 app.get('/dashboard',isLoggedIn, admin.admin)
