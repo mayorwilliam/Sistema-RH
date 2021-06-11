@@ -1,14 +1,21 @@
+  
 const express = require('express')
+const multer = require('multer')
 
+const storage = multer.diskStorage({
+    destination: './archivos',
+    filename: (request,file,callback) => {
+        callback(null,file.originalname)
+    }
+})
 
 const admin = require('../controllers/controller_admin')
 const app = express.Router()
-
+const upload = multer({storage, dest: './archivos'})
 const {isLoggedIn} = require('../controllers/auth')
 
 app.get('/dashboard',isLoggedIn, admin.admin)
-
-app.post('/addarticulo',isLoggedIn, admin.addarticulo)
+app.post('/addarticulo',isLoggedIn,upload.single('archivo'),  admin.addarticulo)
 
 //edit articulo
 app.get('/editArticulo/:id',isLoggedIn, admin.vereditArticulo)

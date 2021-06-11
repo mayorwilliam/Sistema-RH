@@ -1,7 +1,7 @@
 const { response } = require('express')
 const pool = require('../settings/db')
-// const path  = require('path')
-// const fs = require('fs-extra')
+const path  = require('path')
+const fs = require('fs-extra')
 
 // const multer = require('multer')
 // const upload = multer({dest: './archivos'})
