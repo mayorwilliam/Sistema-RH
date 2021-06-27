@@ -9,7 +9,8 @@ const bodyParser = require('body-parser')
 
 
 const  {database} = require('./settings/keys')
-const MysqlStore = require('express-mysql-session')(session)
+// const MysqlStore = require('express-mysql-session')(session)
+var MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path')
 const app = express()
 require('./controllers/passport')
@@ -32,10 +33,10 @@ app.use(bodyParser.json(({extended:true})))
 
 //sesseion
 app.use(session({
-    secret: 'cursocrudmysqlynodejs',
+    secret: 'Sistema-rh', //cursocrudmysqlynodejs
     resave: false,
     saveUninitialized: false,
-    store: new MysqlStore(database)
+    store: new MongoDBStore(database)
 }))
 app.use(passport.initialize())
 app.use(passport.session())
