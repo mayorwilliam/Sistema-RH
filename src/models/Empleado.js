@@ -1,7 +1,7 @@
 const {Schema,model} = require('mongoose')
 
 
-const imageSchema  = new Schema({
+const EmpleadoSchema  = new Schema({
     title: {type:String},
     description: {type:String},
     filename: {type:String},
@@ -12,4 +12,4 @@ const imageSchema  = new Schema({
     createAt: {type:Date, default: Date.now()},
 })
 
-module.exports = model('Image', imageSchema)
+module.exports = model('Empleado', EmpleadoSchema)
